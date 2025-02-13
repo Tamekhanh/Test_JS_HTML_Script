@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+
+
+        function calAdd(a, b) {
+            return a + b;
+        }
+
+        function calSub(a, b) {
+            return a - b;
+        }
+
+        function calMul(a, b) {
+            return a * b;
+        }
+
+        function calDiv(a, b) {
+            return a / b;
+        }
+
+        var resultAdd = calAdd(5, 6)
+        var resultSub = calSub(5, 6)
+        var resultMul = calMul(5, 6)
+        var resultDiv = calDiv(5, 6)
+        console.log(resultAdd);
+        console.log(resultSub);
+        console.log(resultMul);
+        console.log(resultDiv);
+
+        function equation(a, b) {
+            if (a == 0) {
+                if (b == 0) {
+                    return ("Phương trình có vô số nghiệm")
+                } else {
+                    return ("Phương trình vô nghiệm")
+                }
+            } else {
+                return ("Phương trình có nghiệm duy nhất: " + -b / a);
+            }
+        }
+        var resultEquation = equation(3, 9);
+        console.log(resultEquation);
+
+        function stepEquation(a, b, c) {
+            if (a == 0) {
+                return equation(b, c);
+            }
+            var delta = 0;
+            var x1 = 0;
+            var x2 = 0;
+            delta = Math.pow(b, 2) - 4 * a * c;
+            console.log("Ta có Delta = " + delta);
+            if (delta < 0) {
+                return ("Phương trình vô nghiệm");
+            } else {
+                if (delta == 0) {
+                    x1 = -b / (2 * a);
+                    return "Phương trình có nghiệm kép x1=x2= " + x1;
+                } else {
+                    x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                    x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                    return "Phương trình có 2 nghiệm phân biệt x1 = " + x1 + " và x2 = " + x2;
+                }
+            }
+        }
+
+        calCanchi(1890);
+
+        function calCanchi (a) {
+            console.log("Sinh nam: "+ a)
+            console.log("Can: "+countCan(a));
+            console.log("Chi: "+countChi(a));
+        }
+
+        function countCan (a) {
+            let lastnum = a%10;
+            switch (lastnum) {
+                case 0: return "Canh";
+                case 1: return "Tan";
+                case 2: return "Hoi";
+                case 3: return "Quy";
+                case 4: return "Giap";
+                case 5: return "At";
+                case 6: return "Binh";
+                case 7: return "Dinh";
+                case 8: return "Mau";
+                case 9: return "Ky";
+
+            }
+        }
+
+        function countChi (a) {
+            let residual = a%12;
+            switch (residual) {
+                case 0: return "Than";
+                case 1: return "Hoi";
+                case 2: return "Tuat";
+                case 3: return "Hoi";
+                case 4: return "Ty";
+                case 5: return "Suu";
+                case 6: return "Dan";
+                case 7: return "Mao";
+                case 8: return "Tinh";
+                case 9: return "Ti";
+                case 10: return "Ngo";
+                case 11: return "Mui";
+            }
+        }
+
+        console.log(stepEquation(2, 9, 4));
+
+        function leepYear(a) {
+            if (a % 4 == 0) {
+                if (a % 100 == 0) {
+                    if (a % 400 == 0) {
+                        return ("Năm nhuận");
+                    } else {
+                        return ("Năm không nhuận");
+                    }
+                } else {
+                    return ("Năm nhuận");
+                }
+            } else {
+                return ("Năm không nhuận");
+            }
+        }
+
+        console.log(leepYear(2100));
+        //32335654565176253675136825381538125381264654531315+485386528472803470284923842385043758374508247503
+        function bigInt(a, b) {
+            let lengthA = a.length;
+            let lengthB = b.length;
+            var smallest = smallestNumber(lengthA, lengthB);
+            if (smallest == "a") {
+                a = extendNumber(a, lengthA, lengthB);
+                return calculateInt(a, b, lengthB);
+            } else {
+                if (smallest == "b") {
+                    b = extendNumber(b, lengthB, lengthA);
+                    return calculateInt(a, b, lengthA);
+                }
+            }
+            return calculateInt(a, b, lengthA);
+        }
+
+        function extendNumber(num, numLength, largestLength) {
+            for (var i = numLength; i < largestLength; i++) {
+                num = "0" + num;
+            }
+            return (num);
+        }
+
+        function calculateInt(a, b, lengthA) {
+            let leftOver = 0;
+            let singleTotal;
+            let plusTo = 0;
+            let total = "";
+            for (var i = lengthA - 1; i >= 0; i--) {
+                singleTotal = parseInt(a[i]) + parseInt(b[i]);
+                singleTotal = singleTotal + leftOver;
+                leftOver = parseInt(singleTotal / 10);
+                plusTo = singleTotal % 10;
+                total = plusTo + total;
+            }
+            if (leftOver != 0) {
+                total = leftOver + total;
+            }
+            return total;
+        }
+
+        function smallestNumber(a, b) {
+            if (a < b) {
+                return "a";
+            } else {
+                if (a > b) {
+                    return "b";
+                } else {
+                    return "none";
+                }
+            }
+        }
+
+        function extendNumberMulti(num, numLength, largestLength) {
+            for (var i = numLength; i < largestLength; i++) {
+                num = num + "0";
+            }
+            return (num);
+        }
+
+        console.log("Total Add Big Int= " + bigInt('123456789123456789009876543212345678909098765456789876543212345678987878987654321', '1234567890123456789012345678901234567891234567890123456789'));
+        //Big Int but Multi
+        function bigIntMul(a, b) {
+            let lengthA = a.length;
+            let lengthB = b.length;
+            return calculateIntMul(a, b, lengthA, lengthB);
+        }
+        console.log("Total Add Big Int Multi= " + bigIntMul('1234567890123456789012345678', '9234567891234567890098765432'));
+        console.log("Total Add Big Int Multi= " + bigIntMul('123456789123456789009876543212345678909098765456789876543212345678987878987654321', '1234567890123456789012345678901234567891234567890123456789'));
+        function calculateIntMul(a, b, lengthA, lengthB) {
+            let total = "0";
+            let temp = "";
+            for (var i = lengthB - 1; i >= 0; i--) {
+                temp = calculateMultiBigInt(a, b[i], lengthA);
+                for (var l = (lengthB - 1) - i; l > 0; l--) {
+                    temp = temp + "0";
+                }
+                total = bigInt(total, temp);
+            }
+            return (total);
+        }
+
+
+        function calculateMultiBigInt(a, b, lengthB) {
+            let leftOver = 0;
+            let singleTotal;
+            let plusTo = 0;
+            let total = "";
+            for (var i = lengthB - 1; i >= 0; i--) {
+                singleTotal = parseInt(a[i]) * parseInt(b);
+                singleTotal = singleTotal + leftOver;
+                leftOver = parseInt(singleTotal / 10);
+                plusTo = singleTotal % 10;
+                total = plusTo + total;
+            }
+            if (leftOver != 0) {
+                total = leftOver + total;
+            }
+            return (total);
+        }
+    </script>
+</body>
+
+</html>
