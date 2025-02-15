@@ -168,8 +168,7 @@
             let plusTo = 0;
             let total = "";
             for (var i = lengthA - 1; i >= 0; i--) {
-                singleTotal = parseInt(a[i]) + parseInt(b[i]);
-                singleTotal = singleTotal + leftOver;
+                singleTotal = parseInt(a[i]) + parseInt(b[i]) + leftOver;
                 leftOver = parseInt(singleTotal / 10);
                 plusTo = singleTotal % 10;
                 total = plusTo + total;
@@ -228,8 +227,7 @@
             let plusTo = 0;
             let total = "";
             for (var i = lengthB - 1; i >= 0; i--) {
-                singleTotal = parseInt(a[i]) * parseInt(b);
-                singleTotal = singleTotal + leftOver;
+                singleTotal = parseInt(a[i]) * parseInt(b) + leftOver;
                 leftOver = parseInt(singleTotal / 10);
                 plusTo = singleTotal % 10;
                 total = plusTo + total;
